@@ -20,9 +20,10 @@ def main():
     st.markdown("#### Please wait after selecting any Option Because it takes time to Analyze `\U0001F64F`")
     st.markdown('<p style="font-size: 24px; color: blue;">Thank You 😃 😍</p>', unsafe_allow_html=True)
     st.sidebar.markdown("""
-        <h2 style="text-align:center; color: #0056b3; font-size: 30px">Choose User</h2>
+        <h2 style="text-align:center; color: #0056b3; font-size: 20px">Upload Your whatsapp Chat</h2>
         <hr style="border:1px solid #0056b3;">
     """, unsafe_allow_html=True)
+
 
     # --------file handling-------
     upload_file = st.sidebar.file_uploader('Choose a file')
@@ -31,13 +32,13 @@ def main():
         data = bytes_data.decode('utf-8')
         df = preprocessor.preprocessor(data)
 
-        st.dataframe(df)
         st.divider()
         # fetch unique users
         users_list = df['users'].unique().tolist()
         users_list.sort()
         users_list.insert(0, 'Overall Group')
         selected_user = st.sidebar.selectbox('Select a Course Mate', users_list)
+
 
         if st.sidebar.button('Show Details'):
 
@@ -273,6 +274,7 @@ def main():
                 fig.layout.updatemenus[0].buttons[0].args[1]["frame"]["duration"] = 1500
                 st.plotly_chart(fig, use_container_width=True)
 
+        st.sidebar.subheader("If You Don't know how to get Whatsapp Chat, Refer to Google")
 
 if __name__ == "__main__":
     main()
