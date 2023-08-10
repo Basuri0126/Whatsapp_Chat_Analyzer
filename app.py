@@ -7,6 +7,7 @@ import seaborn as sns
 import plotly.express as px
 
 
+
 def initialize_session():
     if 'initialized' not in st.session_state:
         st.session_state.initialized = True
@@ -15,6 +16,14 @@ def initialize_session():
 
 def main():
     st.set_page_config(layout='wide', page_title='Chat', page_icon='img/students.png')
+    custom_css = """
+    <style>
+    /* Contents of hide_git_icon.css */
+    </style>
+    """
+
+    st.markdown(custom_css, unsafe_allow_html=True)
+
     initialize_session()
     st.title('Whatsapp Chat Analysis')
     st.markdown("#### Please wait after selecting any Option Because it takes time to Analyze `\U0001F64F`")
