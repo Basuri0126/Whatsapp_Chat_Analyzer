@@ -16,12 +16,8 @@ def initialize_session():
 
 def main():
     st.set_page_config(layout='wide', page_title='Chat', page_icon='img/students.png')
-    custom_css = """
-    <style>
-    /* Contents of hide_git_icon.css */
-    </style>
-    """
-
+    with open('hide_git_icon.css', 'r') as css_file:
+        custom_css = f"<style>{css_file.read()}</style>"
     st.markdown(custom_css, unsafe_allow_html=True)
 
     initialize_session()
