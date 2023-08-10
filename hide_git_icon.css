@@ -1,4 +1,5 @@
 /* Contents of hide_git_icon.css */
-.github-icon {
-    display: none;
+#GithubIcon {
+    visibility: hidden;
 }
+
