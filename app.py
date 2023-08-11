@@ -28,7 +28,8 @@ def main():
         <h2 style="text-align:center; color: #0056b3; font-size: 20px">Upload Your whatsapp Chat</h2>
         <hr style="border:1px solid #0056b3;">
     """, unsafe_allow_html=True)
-
+    st.sidebar.subheader("""If You Don't know how to get Whatsapp Chat, Refer to Google and Please Export chat 
+            without media""")
 
     # --------file handling-------
     upload_file = st.sidebar.file_uploader('Choose a file')
@@ -279,9 +280,7 @@ def main():
                 fig.layout.updatemenus[0].buttons[0].args[1]["frame"]["duration"] = 1500
                 st.plotly_chart(fig, use_container_width=True)
 
-        st.sidebar.subheader("""If You Don't know how to get Whatsapp Chat, Refer to Google and Please Export chat 
-        without media""")
 
-                                                                                                                                             
+
 if __name__ == "__main__":
     main()
