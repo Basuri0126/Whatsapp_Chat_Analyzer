@@ -279,7 +279,9 @@ def main():
                 fig.layout.updatemenus[0].buttons[0].args[1]["frame"]["duration"] = 1500
                 st.plotly_chart(fig, use_container_width=True)
 
-        st.sidebar.subheader("If You Don't know how to get Whatsapp Chat, Refer to Google")
+        st.sidebar.subheader("""If You Don't know how to get Whatsapp Chat, Refer to Google and Please Export chat 
+        without media""")
 
+                                                                                                                                             
 if __name__ == "__main__":
     main()
