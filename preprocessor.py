@@ -1,6 +1,7 @@
 import re
 import pandas as pd
 from datetime import datetime
+from dateutil import parser
 
 def preprocessor(data):
     pattern_12_hour = r'\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{1,2}\s[APapMm]{2}'
@@ -19,18 +20,15 @@ def preprocessor(data):
 
         def convert_to_24_hour_format(timestamp):
             # Remove extra characters and replace double commas with a single comma
-            timestamp = timestamp.replace('[', '').replace(']', '').replace(',', '').replace('\u202f', '').replace('AM',' AM').replace('PM', ' PM').replace('\\u202f', '')
+            timestamp = timestamp.replace('[', '').replace(']', '').replace(',', '').replace('\u202f', '').replace('AM',' AM').replace('PM', ' PM').replace('\\u202f', '').replace('â€¯', '')
 
-            # Define the input format
-            input_format = "'%m/%d/%y' '%I:%M %p'"
-
-            # Parse the timestamp string to a datetime object
-            time_obj = datetime.strptime(timestamp, input_format)
-
-            # Format the datetime object in 24-hour time format
-            formatted_time = time_obj.strftime('%Y-%m-%d %H:%M:%S')
-
-            return formatted_time
+            try:
+                time_obj = parser.parse(timestamp)
+                formatted_time = time_obj.strftime('%Y-%m-%d %H:%M:%S')
+                return formatted_time
+            except ValueError as e:
+                print("Error:", e)
+                return None
 
         df['message_date'] = df['message_date'].apply(lambda x: convert_to_24_hour_format(str(x)))
 
